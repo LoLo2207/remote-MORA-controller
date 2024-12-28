@@ -32,8 +32,6 @@ void deserializeConfig(File file)
     }
 
     setConfigObject(doc);
-
-    updatePWM
 }
 
 
