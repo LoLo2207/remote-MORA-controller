@@ -2,7 +2,7 @@
 #include <esp_now.h>
 #include <ArduinoJson.h>
 // #include <cJSON.h>
-#include "myvariables.h"
+#include "myconfig.h"
 #include "mywebserver.h"
 #include "mysdcard.h"
 

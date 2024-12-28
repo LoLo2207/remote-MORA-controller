@@ -8,8 +8,10 @@ class Config {
 public:
     String ssid;
     String password;
-    uint8_t peerAddress[6];
+    
+    // Intervalo entre lecturas de sensores, EN MILISENGUNDOS
     int interval;
+
     int fanDutyCycle;
     int fanPWMPin;
     int fanRPMPin;
@@ -17,10 +19,9 @@ public:
     int pumpPWMPin;
     int pumpRPMPin;
 
-    Config(String ssid, String password, uint8_t peerAddress[6], int interval, int fanDutyCycle, int pumpDutyCycle) {
+    Config(String ssid, String password, int interval, int fanDutyCycle, int pumpDutyCycle) {
         this->ssid = ssid;
         this->password = password;
-        memcpy(this->peerAddress, peerAddress, 6);
         this->interval = interval;
         this->fanDutyCycle = fanDutyCycle;
         this->fanPWMPin = fanPWMPin;
@@ -32,10 +33,7 @@ public:
 };
 
 extern Config config;
-
 void setConfigObject(JsonDocument doc);
-
 // void deserializeConfig(String body);
 void deserializeConfig(File file);
-
 JsonDocument serializeConfig();

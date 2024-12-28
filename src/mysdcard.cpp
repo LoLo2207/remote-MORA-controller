@@ -1,7 +1,7 @@
 #include <SD.h>
 #include <ArduinoJson.h>
 #include "mysdcard.h"
-#include "myvariables.h"
+#include "myconfig.h"
 
 void setupSDCard()
 {

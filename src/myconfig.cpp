@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <SD.h>
 #include <ArduinoJson.h>
-#include "myvariables.h"
+#include "myconfig.h"
 
 // void deserializeConfig(String body)
 // {
@@ -32,15 +32,25 @@ void deserializeConfig(File file)
     }
 
     setConfigObject(doc);
+
+    updatePWM
 }
 
 
 void setConfigObject(JsonDocument doc)
 {
-    Serial.println("Setting config object");
+    Serial.println("=== Setting config object ===");
+    //print all config
+    for (JsonPair kv : doc.as<JsonObject>())
+    {
+        Serial.print("    ");
+        Serial.print(kv.key().c_str());
+        Serial.print(": ");
+        Serial.println(kv.value().as<String>());
+    }
 
-    // config.sid = doc["ssid"].as<String>();
-    // config.password = doc["password"].as<String>();
+    config.ssid = doc["ssid"].as<String>();
+    config.password = doc["password"].as<String>();
 
     config.fanPWMPin = doc["fanPWMPin"].as<int>();
     config.fanRPMPin = doc["fanPWMPin"].as<int>();
@@ -49,6 +59,8 @@ void setConfigObject(JsonDocument doc)
     config.pumpPWMPin = doc["pumpPWMPin"].as<int>();
     config.pumpRPMPin = doc["pumpRPMPin"].as<int>();
     config.pumpDutyCycle = doc["pumpDutyCycle"].as<int>();
+    
+    Serial.println("=== Setting config object ===");
 }
 
 JsonDocument serializeConfig()
