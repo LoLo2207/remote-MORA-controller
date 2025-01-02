@@ -34,8 +34,8 @@ public:
     JsonDocument ToJSON()
     {
         JsonDocument doc;
-        doc["ssid"] = this->ssid;
-        doc["password"] = this->password;
+        // doc["ssid"] = this->ssid;
+        // doc["password"] = this->password;
 
         doc["fanPWMPin"] = this->fanPWMPin;
         doc["fanRPMPin"] = this->fanRPMPin;
