@@ -3,6 +3,8 @@
 #include "mysdcard.h"
 #include "myconfig.h"
 
+extern Config config;
+
 void setupSDCard()
 {
     if (!SD.begin())
@@ -23,7 +25,7 @@ void loadConfigFromFile(String path)
         return;
     }
 
-    deserializeConfig(file);    
+    config.FromFile(file);
 
     file.close();
 }
@@ -37,7 +39,7 @@ void saveConfigToFile(String path)
         return;
     }
 
-    JsonDocument doc = serializeConfig();
+    JsonDocument doc = config.ToJSON();
 
     if (serializeJson(doc, file) == 0)
     {

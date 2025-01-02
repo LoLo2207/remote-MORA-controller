@@ -1,0 +1,14 @@
+{
+    "ssid": "YOUR_SSID",
+    "password": "YOUR_PASSWORD",
+    
+    "interval": 1000,
+    
+    "fanPWMPin": 12,
+    "fanRPMPin": 14,
+    "fanDutyCycle": 75,
+
+    "pumpPWMPin": 27,
+    "pumpRPMPin": 26,
+    "pumpDutyCycle": 40
+}

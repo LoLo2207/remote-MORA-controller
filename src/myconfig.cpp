@@ -3,79 +3,28 @@
 #include <ArduinoJson.h>
 #include "myconfig.h"
 
-// void deserializeConfig(String body)
-// {
-//     Serial.println("Deserializing config body");
-//
-//     JsonDocument doc;
-//     DeserializationError error = deserializeJson(doc, body);
-//     if (error)
-//     {
-//         Serial.print("Failed to parse JSON: ");
-//         Serial.println(error.c_str());
-//     }
-//
-//     setConfigObject(doc);
-// }
+// #ifndef CONFIG_H
+// #define CONFIG_H
 
-void deserializeConfig(File file)
-{   
-    Serial.println("Deserializing config file");
-
-    JsonDocument doc;
-    DeserializationError error = deserializeJson(doc, file);
-    if (error)
-    {
-        Serial.print("Failed to parse config.json: ");
-        Serial.println(error.c_str());
-        return;
-    }
-
-    setConfigObject(doc);
-}
-
-
-void setConfigObject(JsonDocument doc)
-{
-    Serial.println("=== Setting config object ===");
-    //print all config
-    for (JsonPair kv : doc.as<JsonObject>())
-    {
-        Serial.print("    ");
-        Serial.print(kv.key().c_str());
-        Serial.print(": ");
-        Serial.println(kv.value().as<String>());
-    }
-
-    config.ssid = doc["ssid"].as<String>();
-    config.password = doc["password"].as<String>();
-
-    config.fanPWMPin = doc["fanPWMPin"].as<int>();
-    config.fanRPMPin = doc["fanPWMPin"].as<int>();
-    config.fanDutyCycle = doc["fanDutyCycle"].as<int>();
-
-    config.pumpPWMPin = doc["pumpPWMPin"].as<int>();
-    config.pumpRPMPin = doc["pumpRPMPin"].as<int>();
-    config.pumpDutyCycle = doc["pumpDutyCycle"].as<int>();
+// class Config {
+//     String ssid;
+//     String password;
     
-    Serial.println("=== Setting config object ===");
-}
+//     // Intervalo entre lecturas de sensores, EN MILISENGUNDOS
+//     int interval;
 
-JsonDocument serializeConfig()
-{
-    Serial.println("Serializing config object");
+//     int fanDutyCycle;
+//     int fanPWMPin;
+//     int fanRPMPin;
+//     int pumpDutyCycle;
+//     int pumpPWMPin;
+//     int pumpRPMPin;
 
-    JsonDocument doc;
-    doc["ssid"] = config.ssid;
-    doc["password"] = config.password;
+// public:
+//     Config(String ssid, String password, int interval, int fanDutyCycle, int pumpDutyCycle);
+//     JsonDocument ToJSON();
+//     void FromJSON(JsonDocument doc);
+//     void FromFile(File file);
+// };
 
-    doc["fanPWMPin"] = config.fanPWMPin;
-    doc["fanRPMPin"] = config.fanRPMPin;
-    doc["fanDutyCycle"] = config.fanDutyCycle;
-
-    doc["pumpPWMPin"] = config.pumpPWMPin;
-    doc["pumpRPMPin"] = config.pumpRPMPin;
-    doc["pumpDutyCycle"] = config.pumpDutyCycle;
-
-    return doc;
-}
+// #endif

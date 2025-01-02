@@ -8,5 +8,9 @@
 // extern volatile unsigned long pumpPulseCount;
 
 
-// void calculateFanRPM();
-// void calculatePumpRPM();
+void calculateFanRPM();
+void calculatePumpRPM();
+
+void ISR_onFanPulse();
+void ISR_onPumpPulse();
+void setupPWM();

@@ -5,6 +5,7 @@
 #include "myconfig.h"
 #include "mywebserver.h"
 #include "mysdcard.h"
+#include "pwm_rpm.h"
 
 WebServer server(80);
 
@@ -105,7 +106,8 @@ void setupWebServer()
  */
 void onGetConfig()
 {
-  JsonDocument doc = serializeConfig();
+  // JsonDocument doc = serializeConfig();
+  JsonDocument doc = config.ToJSON();
 
   String response;
   serializeJson(doc, response);
@@ -177,6 +179,8 @@ void onPostConfig()
     }
 
     saveConfigToFile("/config.json");
+
+    setupPWM();
 
     server.send(200, "text/plain", "Config updated");
   }
